@@ -1,8 +1,10 @@
+import logo from '../images/logo.png';
+
 function Header() {
     return (
       <header className="header">
         <img
-          src="/images/logo.png"
+          src={logo}
           alt="University of Nottingham logo"
           className="logo"
         />
