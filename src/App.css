@@ -79,3 +79,98 @@
 
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
+
+/* Results table container */
+.results {
+  width: 100%;
+  max-height: 430px;
+  margin-top: 30px;
+
+  overflow: auto;
+
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.95);
+
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+}
+
+/* Main table */
+.results table {
+  width: 100%;
+  min-width: 700px;
+
+  border-collapse: collapse;
+
+  color: #0b2d5b;
+  font-size: 16px;
+  text-align: left;
+}
+
+/* Column headings */
+.results th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+
+  padding: 16px 18px;
+
+  background: #0b2d5b;
+  color: white;
+
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* Table cells */
+.results td {
+  padding: 14px 18px;
+
+  border-bottom: 1px solid rgba(11, 45, 91, 0.15);
+}
+
+/* Alternating row colour */
+.results tbody tr:nth-child(even) {
+  background: rgba(11, 45, 91, 0.06);
+}
+
+/* Highlight a row when the mouse moves over it */
+.results tbody tr:hover {
+  background: rgba(11, 45, 91, 0.14);
+  transition: background 0.2s ease;
+}
+
+/* Make dye names stand out */
+.results td:first-child {
+  font-weight: 600;
+}
+
+/* Improve the scrollbar */
+.results::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.results::-webkit-scrollbar-thumb {
+  background: #0b2d5b;
+  border-radius: 10px;
+}
+
+.results::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* Smaller screens */
+@media (max-width: 750px) {
+  .results {
+    max-height: 350px;
+  }
+
+  .results table {
+    font-size: 14px;
+  }
+
+  .results th,
+  .results td {
+    padding: 12px;
+  }
+}
