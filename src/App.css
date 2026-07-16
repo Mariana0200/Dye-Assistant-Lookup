@@ -3,7 +3,7 @@
 }
 
 .header {
-  height: 90px;
+  height: 70px;
   background: white;
   color: #0b2d5b;
 
@@ -86,7 +86,8 @@
   max-height: 430px;
   margin-top: 30px;
 
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
 
   border-radius: 18px;
   background: rgba(255, 255, 255, 0.95);
@@ -97,13 +98,27 @@
 /* Main table */
 .results table {
   width: 100%;
-  min-width: 700px;
-
+  min-width: 0;
+  table-layout: fixed;
   border-collapse: collapse;
 
   color: #0b2d5b;
-  font-size: 16px;
+  font-size: 14px;
   text-align: center;
+}
+
+/* All table headings and cells */
+.results th,
+.results td {
+  padding: 10px 5px;
+
+  text-align: center;
+  vertical-align: middle;
+
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-break: normal;
+  line-height: 1.25;
 }
 
 /* Column headings */
@@ -112,20 +127,43 @@
   top: 0;
   z-index: 1;
 
-  padding: 16px 18px;
-
   background: #0b2d5b;
   color: white;
 
-  font-size: 16px;
   font-weight: 600;
 }
 
 /* Table cells */
 .results td {
-  padding: 14px 18px;
-
   border-bottom: 1px solid rgba(11, 45, 91, 0.15);
+}
+
+/* Widths for the normal dye-search table */
+.results:not(.similar-results) th:nth-child(1),
+.results:not(.similar-results) td:nth-child(1) {
+  width: 28%;
+}
+
+.results:not(.similar-results) th:nth-child(2),
+.results:not(.similar-results) td:nth-child(2) {
+  width: 28%;
+}
+
+.results:not(.similar-results) th:nth-child(3),
+.results:not(.similar-results) td:nth-child(3),
+.results:not(.similar-results) th:nth-child(4),
+.results:not(.similar-results) td:nth-child(4) {
+  width: 22%;
+}
+
+/* Search Available Dyes table headings */
+.results:not(.similar-results) th {
+  font-size: 17px;
+}
+
+/* Search Available Dyes table cells */
+.results:not(.similar-results) td {
+  font-size: 15px;
 }
 
 /* Alternating row colour */
@@ -133,7 +171,7 @@
   background: rgba(11, 45, 91, 0.06);
 }
 
-/* Highlight a row when the mouse moves over it */
+/* Highlight row on hover */
 .results tbody tr:hover {
   background: rgba(11, 45, 91, 0.14);
   transition: background 0.2s ease;
@@ -170,7 +208,361 @@
   }
 
   .results th,
-  .results td {
-    padding: 12px;
+.results td {
+  padding: 7px 3px;
+  font-size: 11px;
+}
+}
+
+.tab-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin: 30px 0;
+}
+
+.tab-button {
+  padding: 12px 22px;
+
+  border: 2px solid white;
+  border-radius: 25px;
+
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+
+  font-size: 16px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.tab-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
+}
+
+.tab-button.active {
+  background: white;
+  color: #0b2d5b;
+}
+
+.similar-dye-finder {
+  padding: 25px;
+  text-align: center;
+}
+
+.similar-dye-finder h2 {
+  margin-top: 0;
+  font-size: 28px;
+}
+
+@media (max-width: 600px) {
+  .tab-buttons {
+    flex-direction: column;
   }
+
+  .tab-button {
+    width: 100%;
+  }
+}
+/* Similar dye finder */
+.similar-dye-finder {
+  padding: 10px 0 0;
+}
+
+.similar-dye-finder > p {
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.similar-dye-form {
+  max-width: 720px;
+  margin: 28px auto 0;
+  padding: 24px;
+
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: 18px;
+
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.wavelength-inputs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.wavelength-field {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+
+  color: #0b2d5b;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: left;
+}
+
+.wavelength-input-wrapper {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+
+  border: 1px solid rgba(11, 45, 91, 0.25);
+  border-radius: 14px;
+  background: white;
+}
+
+.wavelength-input-wrapper:focus-within {
+  border-color: #0b2d5b;
+  box-shadow: 0 0 0 3px rgba(11, 45, 91, 0.12);
+}
+
+.wavelength-input-wrapper input {
+  width: 100%;
+  min-width: 0;
+  padding: 14px 12px 14px 16px;
+
+  border: 0;
+  outline: 0;
+
+  background: transparent;
+  color: #0b2d5b;
+  font: inherit;
+}
+
+.wavelength-input-wrapper > span {
+  padding-right: 16px;
+  color: #4c607c;
+  font-weight: 500;
+}
+
+.find-similar-button {
+  margin-top: 22px;
+  padding: 13px 28px;
+
+  border: 0;
+  border-radius: 25px;
+
+  background: #0b2d5b;
+  color: white;
+
+  font-size: 16px;
+  font-weight: 600;
+
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.find-similar-button:hover {
+  background: #123f78;
+  box-shadow: 0 6px 16px rgba(11, 45, 91, 0.3);
+  transform: translateY(-1px);
+}
+
+.find-similar-button:focus-visible,
+.tab-button:focus-visible {
+  outline: 3px solid rgba(255, 255, 255, 0.95);
+  outline-offset: 3px;
+}
+
+.similar-dye-error {
+  max-width: 650px;
+  margin: 18px auto 0;
+  padding: 12px 16px;
+
+  border-radius: 12px;
+  background: rgba(255, 235, 235, 0.96);
+  color: #8b1e1e;
+
+  font-size: 16px !important;
+  font-weight: 600;
+}
+
+.similar-results-heading {
+  margin: 32px 0 0;
+  color: #0b2d5b;
+  font-size: 24px;
+}
+
+/* Similar-dye results table */
+.similar-results {
+  width: 100%;
+  max-height: 420px;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Keep the table inside its current container */
+.similar-results table {
+  width: 100%;
+  min-width: 0;
+
+  table-layout: fixed;
+  border-collapse: collapse;
+
+  font-size: 15px;
+}
+
+/* Similar-dye column headings */
+.similar-results th {
+  padding: 11px 4px;
+  font-size: 17px;
+  line-height: 1.15;
+
+  text-align: center;
+  vertical-align: middle;
+
+  white-space: normal;
+  overflow-wrap: normal;
+  word-break: keep-all;
+}
+
+/* Similar-dye table cells */
+.similar-results td {
+  padding: 11px 5px;
+
+  font-size: 15px;
+  line-height: 1.25;
+
+  text-align: center;
+  vertical-align: middle;
+
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+
+/* Rank number */
+.similar-results th:nth-child(1),
+.similar-results td:nth-child(1) {
+  width: 6%;
+}
+
+/* Suggested Dye */
+.similar-results th:nth-child(2),
+.similar-results td:nth-child(2) {
+  width: 20%;
+}
+
+/* Compatible Microscopes */
+.similar-results th:nth-child(3),
+.similar-results td:nth-child(3) {
+  width: 18%;
+}
+
+/* Excitation */
+.similar-results th:nth-child(4),
+.similar-results td:nth-child(4) {
+  width: 12%;
+}
+
+/* Emission */
+.similar-results th:nth-child(5),
+.similar-results td:nth-child(5) {
+  width: 12%;
+}
+
+/* Excitation Difference */
+.similar-results th:nth-child(6),
+.similar-results td:nth-child(6) {
+  width: 16%;
+}
+
+/* Emission Difference */
+.similar-results th:nth-child(7),
+.similar-results td:nth-child(7) {
+  width: 16%;
+}
+
+.rank-cell {
+  padding-left: 3px !important;
+  padding-right: 3px !important;
+  text-align: center;
+}
+
+.match-rank {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 26px;
+  height: 26px;
+  margin: 0;
+
+  border-radius: 50%;
+  background: #0b2d5b;
+  color: white;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.similar-dye-note {
+  margin-top: 22px !important;
+  padding: 12px 16px;
+
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.74);
+  color: #263b56;
+
+  font-size: 14px !important;
+  line-height: 1.5;
+}
+
+@media (max-width: 750px) {
+  .main-content {
+    padding: 30px 12px;
+  }
+
+  .glass-panel {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 25px 16px;
+  }
+
+  .glass-panel h1 {
+    font-size: 31px;
+  }
+
+  .header {
+    height: auto;
+    min-height: 76px;
+    padding: 10px 18px;
+  }
+
+  .header h2 {
+    font-size: 27px;
+  }
+
+  .logo {
+    height: 50px;
+  }
+
+  .wavelength-inputs {
+    grid-template-columns: 1fr;
+  }
+
+  .similar-dye-form {
+    padding: 18px;
+  }
+}
+
+.tab-buttons {
+  margin-bottom: 30px;
+}
+
+.similar-dye-finder {
+  padding-top: 0;
+}
+
+.similar-dye-finder > p:first-child {
+  margin-top: 0;
 }

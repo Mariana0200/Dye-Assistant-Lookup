@@ -1,0 +1,18 @@
+FIXED DYE ASSISTANT
+
+The SimilarDyeFinder component has been repaired and completed.
+
+To use this project:
+1. Copy the files into your existing dyeassistant project, or open this folder directly.
+2. Run: npm install
+3. Run: npm start
+4. When ready to deploy, run: npm run build
+5. Then run: firebase deploy
+
+The second tab now:
+- accepts excitation and emission wavelengths;
+- ignores dyes with missing wavelength values;
+- ignores entries with no compatible microscope;
+- displays the five closest wavelength matches;
+- shows the excitation and emission differences;
+- includes input validation and a scientific-use notice.

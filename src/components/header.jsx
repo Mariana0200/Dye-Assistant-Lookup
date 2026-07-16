@@ -9,7 +9,7 @@ function Header() {
           className="logo"
         />
   
-        <h2>Confocal Dye Assistant</h2>
+        <h2> </h2>
       </header>
     );
   }
