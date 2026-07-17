@@ -566,3 +566,81 @@
 .similar-dye-finder > p:first-child {
   margin-top: 0;
 }
+
+/* Mobile table layout */
+@media (max-width: 750px) {
+  .results {
+    width: 100%;
+    max-width: 100%;
+
+    overflow-x: auto;
+    overflow-y: auto;
+
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /*
+    Give the Search Available Dyes table enough room
+    for its four columns.
+  */
+  .results:not(.similar-results) table {
+    width: 100%;
+    min-width: 640px;
+    table-layout: fixed;
+  }
+
+  /*
+    The Similar Dye table has seven columns,
+    so it needs slightly more space.
+  */
+  .similar-results table {
+    width: 100%;
+    min-width: 820px;
+    table-layout: fixed;
+  }
+
+  /* Mobile table headings */
+  .results th,
+  .similar-results th {
+    padding: 10px 5px;
+
+    font-size: 15px;
+    line-height: 1.15;
+
+    white-space: normal;
+    overflow-wrap: normal;
+    word-break: keep-all;
+    hyphens: none;
+
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  /* Mobile table cells */
+  .results td,
+  .similar-results td {
+    padding: 9px 5px;
+
+    font-size: 13px;
+    line-height: 1.25;
+
+    white-space: normal;
+    overflow-wrap: normal;
+    word-break: normal;
+
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  .rank-cell {
+    padding-left: 4px !important;
+    padding-right: 4px !important;
+  }
+
+  .match-rank {
+    width: 24px;
+    height: 24px;
+
+    font-size: 12px;
+  }
+}
